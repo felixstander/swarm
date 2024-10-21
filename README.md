@@ -1,8 +1,8 @@
 ![Swarm Logo](assets/logo.png)
 
-# Swarm (experimental sample)
+# Swarm (experimental, educational)
 
-An ergonomic, lightweight multi-agent orchestration framework.
+An educational framework exploring ergonomic, lightweight multi-agent orchestration.
 
 > [!WARNING]
 > Swarm is currently an experimental sample framework intended to explore ergonomic interfaces for multi-agent systems. It is not intended to be used in production, and therefore has no official support. (This also means we will not be reviewing PRs or issues!)
@@ -84,9 +84,9 @@ These primitives are powerful enough to express rich dynamics between tools and 
 
 ## Why Swarm
 
-Swarm is lightweight, scalable, and highly customizable by design. It is best suited for situations dealing with a large number of independent capabilities and instructions that are difficult to encode into a single prompt.
+Swarm explores patterns that are lightweight, scalable, and highly customizable by design. Approaches similar to Swarm are best suited for situations dealing with a large number of independent capabilities and instructions that are difficult to encode into a single prompt.
 
-The Assistants API is a great option for developers looking for fully-hosted threads and built in memory management and retrieval. However, Swarm is optimal for developers who want full transparency and fine-grained control over context, steps, and tool calls. Swarm runs (almost) entirely on the client and, much like the Chat Completions API, does not store state between calls.
+The Assistants API is a great option for developers looking for fully-hosted threads and built in memory management and retrieval. However, Swarm is an educational resource for developers curious to learn about multi-agent orchestration. Swarm runs (almost) entirely on the client and, much like the Chat Completions API, does not store state between calls.
 
 # Examples
 
@@ -200,7 +200,7 @@ Hi John, how can I assist you today?
 
 - Swarm `Agent`s can call python functions directly.
 - Function should usually return a `str` (values will be attempted to be cast as a `str`).
-- If a function returns an `Agent`, execution will be transfered to that `Agent`.
+- If a function returns an `Agent`, execution will be transferred to that `Agent`.
 - If a function defines a `context_variables` parameter, it will be populated by the `context_variables` passed into `client.run()`.
 
 ```python
@@ -211,7 +211,7 @@ def greet(context_variables, language):
    return "Done"
 
 agent = Agent(
-   functions=[print_hello]
+   functions=[greet]
 )
 
 client.run(
@@ -332,7 +332,7 @@ Uses the same events as [Chat Completions API streaming](https://platform.openai
 
 Two new event types have been added:
 
-- `{"delim":"start"}` and `{"delim":"start"}`, to signal each time an `Agent` handles a single message (response or function call). This helps identify switches between `Agent`s.
+- `{"delim":"start"}` and `{"delim":"end"}`, to signal each time an `Agent` handles a single message (response or function call). This helps identify switches between `Agent`s.
 - `{"response": Response}` will return a `Response` object at the end of a stream with the aggregated (complete) response, for convenience.
 
 # Evaluations
@@ -356,3 +356,4 @@ run_demo_loop(agent, stream=True)
 - Shyamal Anadkat - [shyamal-anadkat](https://github.com/shyamal-anadkat)
 - Charu Jaiswal - [charuj](https://github.com/charuj)
 - Colin Jarvis - [colin-openai](https://github.com/colin-openai)
+- Katia Gil Guzman - [katia-openai](https://github.com/katia-openai)
